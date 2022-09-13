@@ -2,40 +2,35 @@
   <ion-page>
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
+
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="tab1" href="/tabs/tab1">
-          <ion-icon :icon="triangle" />
-          <ion-label>Tab 1</ion-label>
-        </ion-tab-button>
-          
-        <ion-tab-button tab="tab2" href="/tabs/tab2">
-          <ion-icon :icon="ellipse" />
-          <ion-label>Tab 2</ion-label>
-        </ion-tab-button>
-        
-        <ion-tab-button tab="tab3" href="/tabs/tab3">
-          <ion-icon :icon="square" />
-          <ion-label>Tab 3</ion-label>
-        </ion-tab-button>
+
+        <tab v-for="tab in tabs" :key="tab.name" :tab="tab" />
+
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
-import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
+import { IonTabBar, IonTabs, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { ellipse, square, triangle } from 'ionicons/icons';
+import Tab from '@/components/Tab'
 
 export default defineComponent({
   name: 'TabsPage',
-  components: { IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
+  components: { Tab, IonTabs, IonTabBar, IonPage, IonRouterOutlet },
   setup() {
+    const tabs = [
+        { value: 'Tab 1', name: 'tab1', href: '/tabs/tab1', icon: ellipse },
+        { value: 'Tab 2', name: 'tab2', href: '/tabs/tab2', icon: square },
+        { value: 'Tab 3', name: 'tab3', href: '/tabs/tab3', icon: triangle },
+    ];
+
     return {
-      ellipse, 
-      square, 
-      triangle,
-    }
+      tabs,
+    };
   }
 });
 </script>
