@@ -1,0 +1,7 @@
+{
+  "name": "ion-tabs-bug-reproduction",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
